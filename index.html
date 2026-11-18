@@ -213,16 +213,18 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
     <article class="project feature reveal">
       <div class="top"><span class="kind">MASTER THESIS</span><span>2025 – 2026</span></div>
-      <h3>Cross-Modal Agent Disagreement as a Bounded Signal for Epistemic Uncertainty</h3>
+      <h3>Multi-Agent Systems for Image Analysis: Object and Complex Scene Detection</h3>
       <div class="org">Universität Hildesheim · Supervisors: Prof. Dr. Thomas Mandl, Shereen Elsayed</div>
-      <p>Built a multimodal pipeline over a historical image archive from four open-weights foundation models: YOLOv11-seg+SAM (instance segmentation), SigLIP (contrastive image–text scene classification), LLaVA-OneVision (visual question answering) and Kosmos-2.5 (grounded OCR).</p>
-      <div class="kpi"><b>0.97</b><span>ROC-AUC for error detection · 801-image expert-reviewed cohort</span></div>
+      <p>When can an automatic answer about a historical illustration be trusted without a person checking it? I built a multi-agent pipeline over the Colibri archive (12,110 illustrations from historical books): a retrained YOLOv11m object finder, a zero-shot SigLIP scene matcher and a LLaVA-OneVision 7B describer, mapped to probabilities by learned models and routed by conformal risk control — approve, short-list, or send to a person.</p>
+      <div class="kpi"><b>76.4%</b><span>approved automatically at a 5% risk promise · original design: 63.0%</span></div>
+      <div class="kpi"><b>0.903</b><span>mean AUROC over 8 object classes · single-model probe: 0.838</span></div>
       <ul>
-        <li>Designed a fusion score that aligns heterogeneous outputs — detection counts, image–text embedding probabilities, VQA answer-embedding similarity — into one epistemic uncertainty estimate.</li>
-        <li>Built the evaluation framework: calibration (ECE, Platt scaling), distribution-free conformal risk control, group-level train/calibration/test splits, leave-one-agent-out ablations, and out-of-sample and cross-archive (Europeana) transfer tests.</li>
-        <li>Benchmarked against locally served 72B/78B open-weights VLMs (Qwen2.5-VL-72B, InternVL3-78B) and a CLIP baseline; the 7B-scale multi-agent system was better calibrated under strong domain shift.</li>
+        <li>Audited the original design and showed its “disagreement” score was confidence in disguise. In a test fixed in advance, agent disagreement ranked errors worse than chance (AUROC 0.378) while the system’s own confidence reached 0.825 — on 149 of 199 errors, all three agents were wrong together.</li>
+        <li>Showed that a detector graded against its teacher’s labels looks good (mAP50 0.768) but scores 0.146 against human boxes; a better teacher (Grounding DINO) lifted it from 0.123 to 0.210.</li>
+        <li>Designed the evaluation: 1,250 labelled pictures from 550 books, book-disjoint 60/20/20 splits redrawn 200 times, key tests written down before running, and four baselines (original system, SigLIP linear probe, best single agent, zero-shot).</li>
+        <li>Tested the risk promise on random archive pictures: calibrating on the curated pool let 16.2% wrong approvals through; calibrating on a random archive sample under one scene definition brought it to 5.4–5.9%.</li>
       </ul>
-      <div class="pills"><span class="pill">PyTorch</span><span class="pill">Hugging Face</span><span class="pill">Vision-Language Models</span><span class="pill">Contrastive Embeddings</span><span class="pill">Uncertainty Quantification</span><span class="pill">Benchmarking</span></div>
+      <div class="pills"><span class="pill">PyTorch</span><span class="pill">Hugging Face</span><span class="pill">YOLOv11</span><span class="pill">SigLIP</span><span class="pill">LLaVA-OneVision</span><span class="pill">Conformal Risk Control</span><span class="pill">Uncertainty Quantification</span><span class="pill">Evaluation Design</span></div>
     </article>
 
     <div class="grid2">
